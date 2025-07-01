@@ -1,0 +1,102 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="customerDetails" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a0c56fe-07b0-44c4-83e5-75eab7caadb8">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Supermarket Connection"/>
+	<parameter name="p_customer_id" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[select c.name, c.email, c.phone, o.order_id, o.order_date, i.item_id, i.name from customer c join orders o on c.customer_id = o.customer_id
+          join order_details od on o.order_id = od.order_id join item i on od.item_id = i.item_id where c.customer_id = $P{p_customer_id}]]></query>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="phone" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="phone"/>
+		<property name="com.jaspersoft.studio.field.label" value="phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="order_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="order_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="order_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="order_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="order_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="order_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="item_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="item_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="item_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="item"/>
+	</field>
+	<field name="COLUMN_7" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="item"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="4f9a731c-a3d7-4703-be61-863b9cdecf0b" x="210" y="0" width="270" height="40">
+			<text><![CDATA[Customer Report]]></text>
+		</element>
+	</title>
+	<pageHeader height="101" splitType="Stretch">
+		<element kind="staticText" uuid="6b6ea8ec-6cc8-41a2-ac8f-774046f03085" x="2" y="6" width="78" height="30">
+			<text><![CDATA[Name:]]></text>
+		</element>
+		<element kind="textField" uuid="5c90505d-0a86-497d-a76d-aaa4b2837bbb" x="79" y="9" width="481" height="27">
+			<expression><![CDATA[$F{name}]]></expression>
+		</element>
+		<element kind="staticText" uuid="09422e96-3498-4e79-9cbb-8a134996f99d" x="2" y="41" width="77" height="30">
+			<text><![CDATA[Phone:]]></text>
+		</element>
+		<element kind="textField" uuid="fb5fe19f-cd3a-4844-81c3-56bcb4fac9a3" x="79" y="40" width="481" height="30">
+			<expression><![CDATA[$F{phone}]]></expression>
+		</element>
+		<element kind="staticText" uuid="28b0a1b1-2edd-4013-8b99-3dc7ec9f22b8" x="2" y="71" width="78" height="30">
+			<text><![CDATA[Email:]]></text>
+		</element>
+		<element kind="textField" uuid="55d25460-fd9c-4d9e-960e-8d14776563c3" x="79" y="70" width="481" height="30">
+			<expression><![CDATA[$F{email}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="staticText" uuid="42482357-d644-4d03-9d65-ad75f3302e09" x="0" y="0" width="141" height="30">
+			<text><![CDATA[order_id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3e2c7628-f2d0-44f4-8439-a2af0aa5d7d2"/>
+		</element>
+		<element kind="staticText" uuid="58226d31-045a-44a7-a836-7a4d47ed4c61" x="141" y="0" width="138" height="30">
+			<text><![CDATA[order_date]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="07cb530c-55d7-426a-9d6b-1d79f86e0df1"/>
+		</element>
+		<element kind="staticText" uuid="3c139eb2-e359-4fad-bca0-5da05659835c" x="279" y="0" width="138" height="30">
+			<text><![CDATA[item_id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d107415c-c359-4913-87ae-c5f10ac4c101"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<element kind="textField" uuid="ebfb2682-fb79-4c99-bca7-8c0e89de9428" x="0" y="0" width="141" height="30">
+				<expression><![CDATA[$F{order_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3e2c7628-f2d0-44f4-8439-a2af0aa5d7d2"/>
+			</element>
+			<element kind="textField" uuid="a6c77a76-1cac-4010-99c3-a1d4b3398bbe" x="141" y="0" width="138" height="30">
+				<expression><![CDATA[$F{order_date}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="07cb530c-55d7-426a-9d6b-1d79f86e0df1"/>
+			</element>
+			<element kind="textField" uuid="62f08b64-190b-4498-876b-5202a0f07b92" x="279" y="0" width="138" height="30">
+				<expression><![CDATA[$F{item_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d107415c-c359-4913-87ae-c5f10ac4c101"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
