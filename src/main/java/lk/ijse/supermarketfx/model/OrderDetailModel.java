@@ -1,7 +1,7 @@
 package lk.ijse.supermarketfx.model;
 
 import lk.ijse.supermarketfx.Dto.OrderDetailsDto;
-import lk.ijse.supermarketfx.util.CrudUtil;
+import lk.ijse.supermarketfx.dao.SQLUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class OrderDetailModel {
     }
 
     private boolean saveOrderDetails(OrderDetailsDto orderDetailsDto) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute(
+        return SQLUtil.execute(
                 "insert into order_details values (?,?,?,?)",
                 orderDetailsDto.getOrderId(),
                 orderDetailsDto.getItemId(),

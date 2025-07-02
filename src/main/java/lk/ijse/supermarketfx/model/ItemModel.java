@@ -2,7 +2,7 @@ package lk.ijse.supermarketfx.model;
 
 import lk.ijse.supermarketfx.Dto.ItemDto;
 import lk.ijse.supermarketfx.Dto.OrderDetailsDto;
-import lk.ijse.supermarketfx.util.CrudUtil;
+import lk.ijse.supermarketfx.dao.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ItemModel {
     public ArrayList<String> getAllItemIds() throws SQLException, ClassNotFoundException {
-        ResultSet rst = CrudUtil.execute("select item_id from item");
+        ResultSet rst = SQLUtil.execute("select item_id from item");
         ArrayList<String> list = new ArrayList<>();
         while (rst.next()) {
             String id = rst.getString(1);
@@ -20,7 +20,7 @@ public class ItemModel {
     }
 
     public ItemDto findById(String itemId) throws SQLException, ClassNotFoundException {
-        ResultSet rst = CrudUtil.execute("select * from item where item_id = ?",
+        ResultSet rst = SQLUtil.execute("select * from item where item_id = ?",
                 itemId
         );
 
@@ -36,7 +36,7 @@ public class ItemModel {
     }
 
     public boolean reduceQty(OrderDetailsDto orderDetailsDto) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute(
+        return SQLUtil.execute(
                 "update item set quantity = quantity-? where item_id=?",
                 orderDetailsDto.getQty(),
                 orderDetailsDto.getItemId()

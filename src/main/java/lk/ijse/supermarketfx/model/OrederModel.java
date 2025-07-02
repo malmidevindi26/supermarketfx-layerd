@@ -2,7 +2,7 @@ package lk.ijse.supermarketfx.model;
 
 import lk.ijse.supermarketfx.Dto.OrderDto;
 import lk.ijse.supermarketfx.db.DBConnection;
-import lk.ijse.supermarketfx.util.CrudUtil;
+import lk.ijse.supermarketfx.dao.SQLUtil;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class OrederModel {
     private final OrderDetailModel orderDetailModel = new OrderDetailModel();
     public String getNextId() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtil.execute("select order_id from orders order by order_id desc limit 1");
+        ResultSet resultSet = SQLUtil.execute("select order_id from orders order by order_id desc limit 1");
         char tableChar = 'O';
         if (resultSet.next()) {
             String lastId = resultSet.getString(1); // "C004"
@@ -28,7 +28,7 @@ public class OrederModel {
         Connection connection = DBConnection.getInstance().getConnection();
         try {
             connection.setAutoCommit(false);
-            boolean isSave = CrudUtil.execute(
+            boolean isSave = SQLUtil.execute(
                     "insert into orders values (?,?,?)",
                     orderDto.getOrderId(),
                     orderDto.getCustomerId(),
